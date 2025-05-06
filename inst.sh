@@ -1901,21 +1901,21 @@ curl --max-time 5 --silent --output /dev/null https://counter.minlearn.org/{dsrk
   # Automatically remove DISK on sigint，note,we should put it in the right place to let it would occur
   trap 'echo; echo "- aborting by user, restoreall"; restoreall;exit 1' SIGINT
 
-  printf "\n ✔ %-30s" "Preparation done! `echo -n \" wait till auto reboot after 20s,or ctlc to interrupt \"`......"
+  printf "\n ✔ %-30s" "Preparation done! `echo -n \" wait till auto reboot after 3s,or ctlc to interrupt \"`......"
   echo;echo -en "[ \033[32m after reboot, it will enter online $( [[ "$tmpTARGETMODE" == '0' ]] && echo install;[[ "$tmpTARGETMODE" == '2' ]] && echo restore) mode: "
   printf "\n %-20s" "`echo -en \" \033[32m if netcfg valid,open and refresh http://$( [[ "$FORCENETCFGV6ONLY" != '1' ]] && echo publicIPv4ofthisserver:80 || echo [publicIPv6ofthisserver:80]) for novncview\033[0m $([[ "$tmpINSTWITHMANUAL" != '1' ]] && echo ])  \"`"
   [[ "$tmpINSTWITHMANUAL" == '1' && "$tmpINSTWITHBORE" == '' ]] && printf "\n %-20s" "`echo -en \" \033[32m if netcfg valid,connected to sshd@publicIPofthisserver:22 without passwords\033[0m \"`"
   [[ "$tmpINSTWITHMANUAL" == '1' && "$tmpINSTWITHBORE" != '' ]] && printf "\n %-20s" "`echo -en \" \033[32m if netcfg valid,connected to sshd@publicIPofthisserver:22 or boresrvip:22 without passwords\033[0m \"`"
   [[ "$tmpINSTWITHMANUAL" == '1' ]] && printf "\n %-20s" "`echo -en \" \033[32m if netcfg unvalid,the system will roll to normal current running os after 5 mins\033[0m \033[0m ] \"`"
 
-  echo;for time in `seq -w 20 -1 0`;do echo -n -e "\b\b$time";sleep 1;done;sudo reboot -f >/dev/null 2>&1;
+  echo;for time in `seq -w 3 -1 0`;do echo -n -e "\b\b$time";sleep 1;done;sudo reboot -f >/dev/null 2>&1;
 }
 
 [[ "$tmpBUILD" == "11" ]] && [[ "$tmpTARGETMODE" != "1" ]] && {
   printf "\n ✔ %-30s" "Prepare reboot ... " && { GRUBID=`bcdedit /enum ACTIVE|sed 's/\r//g'|tail -n4|head -n 1|awk -F ' ' '{ print $2}'`;bcdedit /bootsequence $GRUBID /addfirst; }
   trap 'echo; echo "- aborting by user, restoreall"; restoreall;exit 1' SIGINT
   printf "\n ✔ %-30s" "Preparation done! `echo -n \" wait till auto reboot after 20s,or ctlc to interrupt \"`......"
-  echo;for time in `seq -w 20 -1 0`;do echo -n -e "\b\b$time";sleep 1;done;shutdown -t 0 -r -f >/dev/null 2>&1;
+  echo;for time in `seq -w 3 -1 0`;do echo -n -e "\b\b$time";sleep 1;done;shutdown -t 0 -r -f >/dev/null 2>&1;
 }
 
 [[ "$tmpBUILD" == "1" ]] && [[ "$tmpTARGETMODE" != "1" ]] && {
@@ -1924,7 +1924,7 @@ curl --max-time 5 --silent --output /dev/null https://counter.minlearn.org/{dsrk
   printf "\n ✔ %-30s" "Prepare reboot ... " && { sudo grub-mkstandalone -o /Volumes/EFI/out.efi -O x86_64-efi /vmlinuz_1kddinst=$topdir/$remasteringdir/boot/vmlinuz_1kddinst /initrfs_1kddinst.img=$topdir/$remasteringdir/boot/initrfs_1kddinst.img /boot/grub/grub.cfg=$topdir/$remasteringdir/boot/grub.new;sudo bless --mount /Volumes/EFI --setBoot --file /Volumes/EFI/out.efi --shortform; }
   trap 'echo; echo "- aborting by user, restoreall"; restoreall;exit 1' SIGINT
   printf "\n ✔ %-30s" "Preparation done! `echo -n \" wait till auto reboot after 20s,or ctlc to interrupt \"`......"
-  echo;for time in `seq -w 20 -1 0`;do echo -n -e "\b\b$time";sleep 1;done;sudo reboot -f >/dev/null 2>&1;
+  echo;for time in `seq -w 3 -1 0`;do echo -n -e "\b\b$time";sleep 1;done;sudo reboot -f >/dev/null 2>&1;
 }
 
 [[ "$tmpTARGETMODE" == '4' && "$tmpTARGET" != 'devdeskde' ]] && {
