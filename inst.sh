@@ -27,7 +27,7 @@
 
 forcemaintainmode='0'                             # 0:all put in maintain,1,just devdeskos in maintain
 
-export autoDEBMIRROR0=https://github.com/m-tq/inst/raw/master
+export autoDEBMIRROR0=https://github.com/dGhpcy5pcy5vbmx5LmZvci5pbnN0YWxsYXRpb24/dGhpcy5pcy5mb2xkZXIucGF0aC5mb3IucHV0Lm1haW4uZmlsZS5pbnN0YWxsYXRpb24uZmlsZQ/raw/master
 export autoDEBMIRROR1=
 export FORCEDEBMIRROR=''                          # force apply a fixed mirror/targetddurl selection to force override autoselectdebmirror results based on -t -m args given
 export tmpTARGETMODE='0'                          # 0:WGETDD INSTMODE ONLY 1:CLOUDDDINSTALL+BUILD MIXTURE,2,3,nc install mode,defaultly it sholudbe 0, 4 inplace dd mode for devdeskct(lxcct,or kvmct) or devdeskde
